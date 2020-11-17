@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const { Schema, model } = mongoose;
+
+const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -8,7 +10,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   friends: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
@@ -17,11 +19,11 @@ const userSchema = new mongoose.Schema({
 
 // User.find().populate("friends")
 
-const postSchema = new mongoose.Schema({
+const postSchema = new Schema({
   title: String,
   body: String,
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
   },
 });
